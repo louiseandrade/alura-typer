@@ -6,7 +6,8 @@ var tempoInicial = $("#tempo-digitacao").text();
     atualizaTamanhoFrase();
     inicializaContadores();
     inicializaCronometro();
-    inicializaMarcadores(); 
+    inicializaMarcadores();
+    inserePlacar(); 
     $("#botao-reiniciar").click(reiniciaJogo);
 });
 
@@ -39,12 +40,17 @@ function inicializaCronometro() {
             tempoRestante--;
             $("#tempo-digitacao").text(tempoRestante);
             if (tempoRestante < 1) {
-                campo.attr("disabled", true);
                 clearInterval(cronometroID);
-                campo.toggleClass("campo-desativado");
+                finalizaJogo();
             }
         }, 1000);
     });
+}
+
+function finalizaJogo(){
+    campo.attr("disabled", true);
+    campo.toggleClass("campo-desativado");
+    inserePlacar();
 }
 
 function inicializaMarcadores() {
@@ -63,9 +69,6 @@ function inicializaMarcadores() {
     });
 }
 
-function inserePlacar(){
-    var corpoTabela = $(".placar").find("tbody");
-}
 
 function reiniciaJogo(){
     $("#botao-reiniciar").click(function() {
