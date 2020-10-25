@@ -1,10 +1,10 @@
-$("#botao-frase").click(fraseAleatoria);
+$("#botao-frase-id").click(fraseAleatoria);
+$("#botao-frase-id").click(buscaFrase);
 
-function fraseAleatoria() {
 
-    $("#spinner").toggle(); //mostra spinner
-
-    $.get("http://localhost:3000/frases", trocaFraseAleatoria)
+function fraseAleatoria(){
+    $("#spinner").toggle();
+    $.get("http://192.168.0.83/frases", trocaFraseAleatoria) 
     .fail(function(){
         $("#erro").toggle();
         setTimeout(function(){
@@ -26,13 +26,10 @@ function trocaFraseAleatoria(data) {
 }
 
 function buscaFrase() {
-
-    $("#spinner").toggle();
     var fraseId = $("#frase-id").val();
+    var dados = {id : fraseId}; //objeto JS que guarda a id
 
-    var dados = {id : fraseId}; //criacao do objeto JS que guarda a id
-
-    //passando objeto como segundo parâmetro
+    //objeto como segundo parâmetro
     $.get("http://localhost:3000/frases", dados, trocaFrase)
     .fail(function(){
         $("#erro").toggle();
@@ -43,4 +40,11 @@ function buscaFrase() {
     .always(function(){
         $("#spinner").toggle();
     });
+}
+
+function trocaFrase(data) {
+    var frase = $(".frase");
+    frase.text(data.texto); //cuidado, texto com "o" no final 
+    atualizaTamanhoFrase();
+    atualizaTempoInicial(data.tempo);
 }

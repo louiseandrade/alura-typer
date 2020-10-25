@@ -1,4 +1,8 @@
 
+body {
+    overflow: scroll;
+}
+
 .campo-digitacao {
     font-size: 20px;
     height: 130px;
@@ -42,7 +46,20 @@
     width: 40px;
 }
 
-body {
-    overflow: scroll;
+#botao-sync{
+    float: right;
 }
 
+.select-usuarios{
+    display:inline-block;
+}
+
+#usuarios{
+    display:block;
+}
+
+
+.selectize-input {
+    width: 150px;
+    vertical-align: middle;
+}

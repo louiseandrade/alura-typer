@@ -7,8 +7,9 @@ var tempoInicial = $("#tempo-digitacao").text();
     inicializaContadores();
     inicializaCronometro();
     inicializaMarcadores();
-    inserePlacar(); 
     $("#botao-reiniciar").click(reiniciaJogo);
+
+    atualizaPlacar();
 });
 
 function autalizaTempoInicial(tempo){
@@ -87,5 +88,11 @@ function reiniciaJogo(){
     });
 }
 
+$("#usuarios").selectize({
+    create: true,
+    sortField: 'text'
+});
 
-
+$(".tooltip").tooltipster({
+    trigger: "custom"
+});
